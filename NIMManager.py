@@ -13,9 +13,6 @@ class NIMManager(GameManager):
     
     def is_finished(self, game_state):
         return game_state["pile"] == 0
-    
-    def get_winner(self, game_state):
-        return self.alternate_player(game_state["current player"])
         
     def get_all_next_states(self, game_state):
         if (self.is_finished(game_state)):

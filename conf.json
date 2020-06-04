@@ -1,8 +1,8 @@
 {
-	"G": 40,
-	"M": 500,
+	"G": 1,
+	"M": 1,
 	"P": 1,
-	"GameType": "Ledge",
+	"GameType": "Hex",
 	"NIM": {
 		"N": 10,
 		"K": 3
@@ -10,5 +10,9 @@
 	"Ledge": {
 		"B": [0,1,0,0,1,2]
 	},
-	"Verbose": false
+	"Hex": {
+		"size": 4,
+		"frame_rate": 0.5
+	},
+	"Verbose": true
 }

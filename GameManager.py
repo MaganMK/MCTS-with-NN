@@ -25,9 +25,8 @@ class GameManager(ABC):
     def get_all_next_states(self, game_state):
         pass
     
-    @abstractmethod
     def get_winner(self, game_state):
-        pass
+        return self.alternate_player(game_state["current player"])
         
     @abstractmethod
     def get_move_as_string(self, old_game_state, new_game_state):

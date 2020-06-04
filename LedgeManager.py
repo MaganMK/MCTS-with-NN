@@ -40,8 +40,6 @@ class LedgeManager(GameManager):
             index += 1
         return res
     
-    def get_winner(self, game_state):
-        return self.alternate_player(game_state["current player"])
     
     def get_move_as_string(self, old_game_state, new_game_state):
         translation = {1: "copper", 2: "gold"}

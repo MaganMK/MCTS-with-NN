@@ -1,6 +1,7 @@
 from GameSimulator import GameSimulator
 from NIMManager import NIMManager
 from LedgeManager import LedgeManager
+from HexManager import HexManager
 from Node import Node
 import json
 
@@ -19,10 +20,16 @@ class Game:
     
     
     def initiate_game_manager(self):
+        player_conf = self.conf["P"]
         if (self.game_type == "NIM"):
-            self.game_manager = NIMManager(self.conf["NIM"]["N"], self.conf["NIM"]["K"], self.conf["P"])         
+            nim_conf = self.conf["NIM"]
+            self.game_manager = NIMManager(nim_conf["N"], nim_conf["K"], player_conf)         
         elif (self.game_type == "Ledge"):
-            self.game_manager = LedgeManager(self.conf["Ledge"]["B"], self.conf["P"])
+            ledge_conf = self.conf["Ledge"]
+            self.game_manager = LedgeManager(ledge_conf["B"], player_conf)
+        elif (self.game_type == "Hex"):
+            hex_conf = self.conf["Hex"]
+            self.game_manager = HexManager(hex_conf["size"], hex_conf["frame_rate"], player_conf)
         else:
             print(f"Does not support {self.game_type} yet.") 
     
@@ -50,6 +57,8 @@ class Game:
         print(f"Games where Player 2 had first move:\t {self.p2_starting_count}")
         print(f"Percentage of games won by the player who had first move: {100*self.correct_winner_count/self.G} %")
         print("--------------------------------------------------------------") 
+        while(True):
+            pass
     
     def single_game(self):
         
@@ -62,6 +71,7 @@ class Game:
             
             if(self.verbose):
                 print(self.game_manager.get_move_as_string(old_game_state, new_game_state))
+        
         
         winner = self.game_manager.get_winner(self.root.game_state)
         self.update_game_stats(winner)
